@@ -1,9 +1,2 @@
 # Architecture
-
-```text
-Sensors -> validation and filtering -> telemetry -> output/alert
-                                      |
-                                      +-> BLE telemetry and logs
-```
-
-The implementation separates acquisition, decision logic, output handling, and telemetry. Hardware-specific access is kept at the edge so the core behavior can be tested with simulated readings.
+Async one-second sample loop uses compensated BME280 driver and GPIOZero NC contact. Threaded local HTTP server exposes latest JSON and self-contained polling page. Optional Bless/BlueZ GATT peripheral publishes7-byte read/notify packets. Invalid climate data produces JSON null and BLE validbit0. Retained Controller simulation API and old CLI are covered. No database, cloud dependency or door actuator.

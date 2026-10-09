@@ -1,16 +1,2 @@
-# Wiring guide
-
-This is a low-voltage prototype wiring plan for **Smart Entryway Live Dashboard**. Confirm every module's datasheet because breakout-board pinouts vary.
-
-| Component | Suggested pin | Role | Check |
-| --- | --- | --- | --- |
-| BME280 | 4 | Digital I/O | Confirm the module voltage and pinout before power-up. |
-| door sensor | A0 | Analog input | Confirm the module voltage and pinout before power-up. |
-| Status output | LED_BUILTIN | Output | Use a resistor when an external LED is fitted. |
-
-## Power
-
-- Use a regulated supply sized for the selected modules.
-- Join grounds unless an interface is explicitly isolated.
-- Do not connect mains voltage directly to a development board.
-- Add a fuse, emergency stop, and certified isolation where a real actuator can create risk.
+# Wiring
+Pi physical pin1 3V3 → BME280 VCC/CSB. Pin3 BCM2 →SDA, pin5 BCM3 →SCL; pin6GND →BME GND/SDO. Address0x76, pullups to3.3V. NC door contact between pin16BCM23 and pin6GND; internal pullup active, closed circuit means door closed, open circuit means open/brokenwire. Pi powered by5V PWRIN USB only. No5V signals. [Diagram](circuit-diagram.svg). Disconnectpower, groundsfirst, railcheck then signals. Mountmagnet so contact closes on closed door.
